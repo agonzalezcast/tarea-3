@@ -1,0 +1,13 @@
+Assets del proyecto conceptos-react (Mesa de ayuda)
+=====================================================
+
+Estos archivos se copian dentro de la carpeta src de un proyecto nuevo de Vite.
+Siga el documento Laboratorio_Guiado_Conceptos_React.docx, pasos 3 a 7:
+
+  src/componentes/  -> copiar la carpeta completa dentro de src
+  src/data/         -> copiar la carpeta completa dentro de src
+  src/index.css     -> reemplaza el index.css de Vite
+  src/App.jsx       -> reemplaza el App.jsx de Vite
+
+main.jsx no viene en el zip: se usa el que crea Vite, sin cambios.
+La carpeta src/conceptos se crea en clase, con los ejemplos de la presentación.
