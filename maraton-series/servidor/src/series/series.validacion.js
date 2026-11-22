@@ -29,3 +29,11 @@ export function validarSerie(datos) {
  
   return errores
 }
+
+export function validarEstado(datos) {
+  const errores = {}
+  if (!ESTADOS.includes(datos.estado)) {
+    errores.estado = `El estado debe ser: ${ESTADOS.join(', ')}.`
+  }
+  return errores
+}
