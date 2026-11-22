@@ -17,3 +17,6 @@ Content-Type: application/json
 
 ### 4. Listar miembros  →  200
 GET {{api}}/miembros
+
+#### 5. Crear un miembro  →  201
+POST {{api}}/miembros
