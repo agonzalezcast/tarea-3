@@ -4,6 +4,4 @@
  
 export const ESTADOS = ['Por ver', 'Viendo', 'Vista']
  
-export const MIEMBROS = ['Ana', 'Luis', 'Sofía', 'Diego']
- 
 export const GENEROS = ['Drama', 'Comedia', 'Ciencia ficción', 'Animación', 'Documental']

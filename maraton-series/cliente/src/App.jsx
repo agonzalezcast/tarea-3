@@ -5,7 +5,7 @@
 import { useEffect, useState } from 'react'
 import { ESTADOS } from './data/series.js'
 import { siguienteEstado } from './utils/series.js'
-import { obtenerSeries, obtenerMiembros } from './api/seriesApi.js'
+import { obtenerSeries, obtenerMiembros, crearSerie } from './api/seriesApi.js'
 import Pagina from './componentes/layout/Pagina.jsx'
 import Panel from './componentes/comunes/Panel.jsx'
 import ListaSeries from './componentes/series/ListaSeries.jsx'
@@ -55,24 +55,26 @@ function App() {
   }))
 
 
-  // ── Cambios del estado: por ahora solo en memoria ──
-  // (se pierden al recargar; en las etapas 8 y 9 pasarán por el API)
-  function agregar(datos) {
-    const nueva = { ...datos, _id: String(Date.now()), estado: 'Por ver' }
-    setSeries([...series, nueva])
+  // ── Agregar: primero el API, después el estado ──
+  // Sin try/catch: si el API rechaza los datos, el error le llega al formulario
+  async function agregar(datos) {
+    const creada = await crearSerie(datos)
+    setSeries((actuales) => [...actuales, creada])
   }
-
+ 
+  // ── Avanzar y quitar: todavía solo en memoria (etapa 9) ──
   function avanzar(id) {
     const nuevas = series.map((serie) =>
       serie._id === id ? { ...serie, estado: siguienteEstado(serie.estado) } : serie
     )
     setSeries(nuevas)
   }
-
+ 
   function quitar(id) {
     const nuevas = series.filter((serie) => serie._id !== id)
     setSeries(nuevas)
   }
+
 
   if (cargando) {
     return (
@@ -120,7 +122,7 @@ function App() {
             <Resumen conteos={conteos} />
           </Panel>
           <Panel titulo="Agregar una serie">
-            <FormularioSerie onAgregar={agregar} />
+            <FormularioSerie miembros={miembros} onAgregar={agregar} />
           </Panel>
         </div>
       </div>
