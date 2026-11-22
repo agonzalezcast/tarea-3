@@ -20,6 +20,10 @@ async function pedir(ruta, metodo = 'GET', datos) {
     throw new Error('No se pudo conectar con el API. ¿Está encendido el servidor?')
   }
 
+  if (respuesta.status === 204) {
+    return null                                  // DELETE: respuesta sin cuerpo
+  }
+
   const cuerpo = await respuesta.json()
   if (!respuesta.ok) {
     const error = new Error(cuerpo.error.mensaje)
@@ -42,3 +46,10 @@ export function crearSerie(datos) {
   return pedir('/series', 'POST', datos)
 }
 
+export function cambiarEstadoSerie(id, estado) {
+  return pedir(`/series/${id}/estado`, 'PATCH', { estado })
+}
+ 
+export function eliminarSerie(id) {
+  return pedir(`/series/${id}`, 'DELETE')
+}
