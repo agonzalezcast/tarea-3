@@ -49,3 +49,29 @@ db.series.deleteOne({ _id: 4 })
 
 use('maraton')
 db.series.updateMany({ miembro: 'Ana' }, { $set: { miembro: 'Ana María' } })
+
+
+use('maraton');
+
+const miembros = db.getCollection('miembros');
+const series = db.getCollection('series');
+
+const nombres = ['Ana', 'Luis', 'Sofía', 'Diego'];
+
+for (const nombre of nombres) {
+  const miembro = miembros.findOne({ nombre });
+
+  if (!miembro) {
+    throw new Error(`No existe el miembro: ${nombre}`);
+  }
+
+  series.updateMany(
+    { miembro: nombre },
+    {
+      $set: { miembroId: miembro._id },
+      $unset: { miembro: '' }
+    }
+  );
+}
+
+printjson(series.find().toArray());
