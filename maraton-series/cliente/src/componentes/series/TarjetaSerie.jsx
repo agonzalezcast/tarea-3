@@ -3,6 +3,7 @@
 // No cambia el estado: le avisa al padre (App) qué pasó.
 
 import { claseEstado } from '../../utils/series.js'
+import { Link } from 'react-router'
 
 function TarjetaSerie({ serie, onAvanzar, onQuitar }) {
   return (
@@ -11,7 +12,7 @@ function TarjetaSerie({ serie, onAvanzar, onQuitar }) {
         <span className={'badge align-self-start mb-2 ' + claseEstado(serie.estado)}>
           {serie.estado}
         </span>
-        <h3 className="h6 card-title">{serie.titulo}</h3>
+        <h3 className="h6 card-title"><Link to={`/series/${serie._id}`}>{serie.titulo}</Link></h3>
         <p className="card-text small text-secondary mb-3">
           {serie.genero} · {serie.temporadas} {serie.temporadas === 1 ? 'temporada' : 'temporadas'} · propuesta por {serie.miembro}
         </p>

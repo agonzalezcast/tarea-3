@@ -58,3 +58,12 @@ export async function eliminar(id) {
   }
 }
 
+export async function obtener(id) {
+  revisarId(id)
+  const serie = await repositorio.buscarPorId(id)
+  if (!serie) {
+    throw new HttpError(404, 'NO_ENCONTRADA', 'La serie no existe.')
+  }
+  return serie
+}
+
