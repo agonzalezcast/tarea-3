@@ -27,11 +27,11 @@ POST {{api}}/series
 Content-Type: application/json
  
 {
-  "titulo": "Chernobyl",
-  "genero": "Drama",
+  "titulo": "Naruto",
+  "genero": "Animación",
   "temporadas": 2,
   "miembroId": "6b0322a63bbcd8a1e7957065",
-  "estado": "Vista", 
+  "estado": "Por ver", 
   "admin": true 
 }
  
@@ -59,13 +59,13 @@ Content-Type: application/json
 
 ### 9. Cambiar el estado de una serie  →  200
 # Reemplace el id por el _id de Severance (respuesta de la petición 6)
-PATCH {{api}}/series/6b033453991af1530f909f12/estado
+PATCH {{api}}/series/6b0353524c9267ef2a75a1f9/estado
 Content-Type: application/json
  
 { "estado": "Viendo" }
  
 ### 10. Un estado que no existe  →  400
-PATCH {{api}}/series/6b033453991af1530f909f12/estado
+PATCH {{api}}/series/6b0353524c9267ef2a75a1f9/estado
 Content-Type: application/json
  
 { "estado": "Abandonada" }
